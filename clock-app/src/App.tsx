@@ -17,8 +17,9 @@ function App() {
 
     return (
         <div>
-            <Setting></Setting>
-            <Clocks></Clocks>
+            {/* Pass setClocks to the Setting component */}
+            <Setting setClocks={setClocks}></Setting>
+            <Clocks clocks={clocks}></Clocks>
         </div>
     )
 }

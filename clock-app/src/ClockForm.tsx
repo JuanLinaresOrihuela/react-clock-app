@@ -1,5 +1,6 @@
 import { useState, FormEvent } from "react";
 import Clock from "./interfaces/Clock";
+import moment from 'moment-timezone';
 
 interface Props {
     updateClock: (x: Clock) => void;
@@ -29,24 +30,34 @@ function ClockForm({ updateClock }: Props) {
         setIsDigital(e.target.checked);
     }
 
+    const getCurrentTime = (): string => {
+        if (!timeZone) return "";
+        return moment().tz(timeZone).format('YYYY-MM-DD HH:mm:ss');
+    }
+
     return (
         <div>
             <form className="clock-form" onSubmit={submitHandler}>
-                <label htmlFor="selectedTimeZoneId">
-                    <select name="selectedFruit" onChange={handleTimeZoneChange} value={timeZone}>
-                        <option value="Hawaii Standard Time/Honolulu">Hawaii Standard Time</option>
-                        <option value="Alaska Standard Time/Anchorage">Alaska Standard Time</option>
-                        <option value="Pacific Standard Time/Los Angeles">Pacific Standard Time</option>
-                        <option value="Mountain Standard Time/Salt Lake City">Mountain Standard Time</option>
-                        <option value="Central Standard Time/Chicago">Central Standard Time</option>
-                        <option value="Eastern Standard Time/New York">Eastern Standard Time</option>
-                    </select>
-                </label> <br /> 
-                <label htmlFor="selectIsDigitalId"> Is Digital? 
+                <label htmlFor="selectedTimeZoneId">Select Time Zone: </label>
+                <select name="selectedTZ" onChange={handleTimeZoneChange} value={timeZone}>
+                    <option value="">Select a time zone</option>
+                    <option value="Pacific/Honolulu">Hawaii Standard Time</option>
+                    <option value="America/Anchorage">Alaska Standard Time</option>
+                    <option value="America/Los_Angeles">Pacific Standard Time</option>
+                    <option value="America/Denver">Mountain Standard Time</option>
+                    <option value="America/Chicago">Central Standard Time</option>
+                    <option value="America/New_York">Eastern Standard Time</option>
+                </select> <br />
+                <label htmlFor="selectIsDigitalId">
                     <input type="checkbox" name="isDigital" checked={isDigital} onChange={handleIsDigitalChange} />
-                </label> <br /> 
+                    Is Digital?
+                </label> <br />
                 <button className="submit-btn" type="submit">Add TimeZone</button>
             </form>
+            <div>
+                <h2>Current Time:</h2>
+                {getCurrentTime()}
+            </div>
         </div>
     )
 }

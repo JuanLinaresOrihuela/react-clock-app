@@ -1,12 +1,16 @@
+import React from 'react';
 import ClockForm from "./ClockForm";
+import Clock from "./interfaces/Clock";
 
+interface Props {
+    setClocks: React.Dispatch<React.SetStateAction<Clock[]>>;
+}
 
-function Setting() {
+function Setting({ setClocks }: Props) {
     return (
         <div>
-            <ClockForm updateClock={function (): void {
-                throw new Error("Function not implemented.");
-            } }></ClockForm>
+            {/* Pass setClocks to the ClockForm component */}
+            <ClockForm setClocks={setClocks}></ClockForm>
         </div>
     )
 }
