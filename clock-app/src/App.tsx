@@ -14,11 +14,13 @@ function App() {
         { timeZone: "Eastern Standard Time/New York", isDigital: false },
     ]);
 
+const addClock = (clock: Clock) => {
+    setClocks([...clocks, clock])
+}
 
     return (
         <div>
-            {/* Pass setClocks to the Setting component */}
-            <Setting setClocks={setClocks}></Setting>
+            <Setting setClocks={addClock}></Setting>
             <Clocks clocks={clocks}></Clocks>
         </div>
     )

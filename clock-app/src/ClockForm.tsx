@@ -2,8 +2,9 @@ import { useState, FormEvent } from "react";
 import Clock from "./interfaces/Clock";
 import moment from 'moment-timezone';
 
+
 interface Props {
-    updateClock: (x: Clock) => void;
+    updateClock: (clock: Clock) => void;
 }
 
 function ClockForm({ updateClock }: Props) {

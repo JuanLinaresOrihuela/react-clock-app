@@ -2,15 +2,14 @@ import React from 'react';
 import ClockForm from "./ClockForm";
 import Clock from "./interfaces/Clock";
 
-interface Props {
-    setClocks: React.Dispatch<React.SetStateAction<Clock[]>>;
+interface SettingProps {
+    setClocks: (clock: Clock) => void;
 }
 
-function Setting({ setClocks }: Props) {
+function Setting({setClocks}: SettingProps) {
     return (
         <div>
-            {/* Pass setClocks to the ClockForm component */}
-            <ClockForm setClocks={setClocks}></ClockForm>
+            <ClockForm updateClock={setClocks}></ClockForm>
         </div>
     )
 }

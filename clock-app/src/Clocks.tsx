@@ -1,6 +1,11 @@
 import ClockDisplay from "./ClockDisplay";
+import Clock from "./interfaces/Clock";
 
-function Clocks() {
+interface ClocksProps {
+    clocks: Clock[]
+}
+
+function Clocks({clocks}: ClocksProps) {
     return (
         <div>
             <ClockDisplay></ClockDisplay>
