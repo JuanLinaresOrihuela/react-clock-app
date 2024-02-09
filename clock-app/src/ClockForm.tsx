@@ -1,7 +1,9 @@
 import { useState, FormEvent } from "react";
 import Clock from "./interfaces/Clock";
 import moment from 'moment-timezone';
-
+import './ClockForm.css'
+//import ClockDisplay from "./ClockDisplay";
+import AnalogClock from "./AnalogClock/analogclock";
 
 interface Props {
     updateClock: (clock: Clock) => void;
@@ -9,7 +11,8 @@ interface Props {
 
 function ClockForm({ updateClock }: Props) {
     const [timeZone, setTimeZone] = useState<string>("");
-    const [isDigital, setIsDigital] = useState<boolean>(true);
+    const [isDigital, setIsDigital] = useState<boolean>(false);
+    
 
     const submitHandler = (e: FormEvent): void => {
         e.preventDefault();
@@ -21,6 +24,7 @@ function ClockForm({ updateClock }: Props) {
         // Reset form after submission
         setTimeZone("");
         setIsDigital(true);
+        
     }
 
     const handleTimeZoneChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -37,9 +41,10 @@ function ClockForm({ updateClock }: Props) {
     }
 
     return (
-        <div>
+        <div className="time-zone-container">
+           <div className="just-form-container">
             <form className="clock-form" onSubmit={submitHandler}>
-                <label htmlFor="selectedTimeZoneId">Select Time Zone: </label>
+                <label htmlFor="selectedTimeZoneId">Select Time Zone: </label><br />
                 <select name="selectedTZ" onChange={handleTimeZoneChange} value={timeZone}>
                     <option value="">Select a time zone</option>
                     <option value="Pacific/Honolulu">Hawaii Standard Time</option>
@@ -53,11 +58,13 @@ function ClockForm({ updateClock }: Props) {
                     <input type="checkbox" name="isDigital" checked={isDigital} onChange={handleIsDigitalChange} />
                     Is Digital?
                 </label> <br />
-                <button className="submit-btn" type="submit">Add TimeZone</button>
+                <button className="submit-btn" type="submit">Delete</button>
             </form>
-            <div>
+            </div> 
+            <div className="clock-parent-container">
                 <h2>Current Time:</h2>
-                {getCurrentTime()}
+                {isDigital ? getCurrentTime() : null}
+               <AnalogClock></AnalogClock>
             </div>
         </div>
     )
