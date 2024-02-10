@@ -1,23 +1,57 @@
 import React, { useState } from "react";
 import "./App.css";
-import Settings from "./components/Settings/Settings";
 import { Clock } from "./interfaces/Clock";
 import Clocks from "./components/Clocks/Clocks";
 
 const App: React.FC = () => {
   const [clocks, setClocks] = useState<Clock[]>([
-    { timeZone: "Hawaii Standard Time/Honolulu", isDigital: true },
-    { timeZone: "Alaska Standard Time/Anchorage", isDigital: false },
-    { timeZone: "Pacific Standard Time/Los Angeles", isDigital: true },
-    { timeZone: "Mountain Standard Time/Salt Lake City", isDigital: false },
-    { timeZone: "Central Standard Time/Chicago", isDigital: true },
-    { timeZone: "Eastern Standard Time/New York", isDigital: false },
+    {
+      id: crypto.randomUUID(),
+      timeZone: "Hawaii Standard Time/Honolulu",
+      isDigital: true,
+    },
+    {
+      id: crypto.randomUUID(),
+      timeZone: "Alaska Standard Time/Anchorage",
+      isDigital: false,
+    },
+    {
+      id: crypto.randomUUID(),
+      timeZone: "Pacific Standard Time/Los Angeles",
+      isDigital: true,
+    },
+    {
+      id: crypto.randomUUID(),
+      timeZone: "Mountain Standard Time/Salt Lake City",
+      isDigital: false,
+    },
+    {
+      id: crypto.randomUUID(),
+      timeZone: "Central Standard Time/Chicago",
+      isDigital: true,
+    },
+    {
+      id: crypto.randomUUID(),
+      timeZone: "Eastern Standard Time/New York",
+      isDigital: false,
+    },
   ]);
 
+  const handleAddClock = () => {
+    setClocks([
+      ...clocks,
+      {
+        id: crypto.randomUUID(),
+        timeZone: "Eastern Standard Time/New York",
+        isDigital: true,
+      },
+    ]);
+  };
+
   return (
-    <div>
-      <Settings setClocks={(clock) => setClocks(clock)} />
-      <Clocks clocks={clocks} />
+    <div className="app">
+      <button onClick={handleAddClock}>Add Clock</button>
+      <Clocks clocks={clocks} setClocks={setClocks} />
     </div>
   );
 };

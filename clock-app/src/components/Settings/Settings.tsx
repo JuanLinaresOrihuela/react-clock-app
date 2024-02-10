@@ -1,15 +1,15 @@
-import ClockForm from "./ClockForm";
-import Clock from "./interfaces/Clock";
+import { Clock } from "../../interfaces/Clock";
+import ClockForm from "../ClockForm/ClockForm";
 
 interface SettingProps {
-  setClocks: (clock: Clock) => void;
+  clock: Clock;
+  updateClock: (clock: Clock) => void;
+  deleteClock: (clock: Clock) => void;
 }
 
-function Setting({ setClocks }: SettingProps) {
+function Setting({ clock, updateClock, deleteClock }: SettingProps) {
   return (
-    <div>
-      <ClockForm updateClock={setClocks}></ClockForm>
-    </div>
+    <ClockForm clock={clock} updateClock={updateClock} deleteClock={deleteClock} />
   );
 }
 

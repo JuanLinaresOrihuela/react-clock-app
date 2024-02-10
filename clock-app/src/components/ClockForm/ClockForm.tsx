@@ -1,20 +1,21 @@
 import { useState, FormEvent } from "react";
 import { Clock } from "../../interfaces/Clock";
 import moment from "moment-timezone";
-import "./ClockForm.css";
-import AnalogClock from "../AnalogClock/AnalogClock";
 
 interface Props {
+  clock: Clock;
   updateClock: (clock: Clock) => void;
+  deleteClock: (clock: Clock) => void;
 }
 
-function ClockForm({ updateClock }: Props) {
-  const [timeZone, setTimeZone] = useState<string>("");
-  const [isDigital, setIsDigital] = useState<boolean>(false);
+function ClockForm({ clock, updateClock, deleteClock }: Props) {
+  const [timeZone, setTimeZone] = useState<string>(clock.timeZone);
+  const [isDigital, setIsDigital] = useState<boolean>(clock.isDigital);
 
   const submitHandler = (e: FormEvent): void => {
     e.preventDefault();
     const newClock: Clock = {
+      ...clock,
       timeZone,
       isDigital,
     };
@@ -38,9 +39,9 @@ function ClockForm({ updateClock }: Props) {
   };
 
   return (
-    <div className="time-zone-container">
-      <div className="just-form-container">
-        <form className="clock-form" onSubmit={submitHandler}>
+    <div className="clock-form">
+      <div>
+        <form onSubmit={submitHandler}>
           <label htmlFor="selectedTimeZoneId">Select Time Zone: </label>
           <br />
           <select
@@ -55,7 +56,7 @@ function ClockForm({ updateClock }: Props) {
             <option value="America/Denver">Mountain Standard Time</option>
             <option value="America/Chicago">Central Standard Time</option>
             <option value="America/New_York">Eastern Standard Time</option>
-          </select>{" "}
+          </select>
           <br />
           <label htmlFor="selectIsDigitalId">
             <input
@@ -65,17 +66,12 @@ function ClockForm({ updateClock }: Props) {
               onChange={handleIsDigitalChange}
             />
             Is Digital?
-          </label>{" "}
+          </label>
           <br />
-          <button className="submit-btn" type="submit">
+          <button onClick={() => deleteClock(clock)}>
             Delete
           </button>
         </form>
-      </div>
-      <div className="clock-parent-container">
-        <h2>Current Time:</h2>
-        {isDigital ? getCurrentTime() : null}
-        <AnalogClock></AnalogClock>
       </div>
     </div>
   );
