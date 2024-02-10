@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import Settings from './Settings';
-import Clocks from './components/Clocks';
-import { Clock } from './types';
+//import Settings from './Settings';
+import Clocks, { Clock } from './components/Clocks';
 
 const App: React.FC = () => {
   const [clocks, setClocks] = useState<Clock[]>([
@@ -18,8 +17,7 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <h1>World Clocks</h1>
-      <Settings clocks={clocks} updateClock={updateClock} />
+      {/* <Settings clocks={clocks} updateClock={updateClock} /> */}
       <Clocks clocks={clocks} deleteClock={deleteClock} />
     </div>
   );
