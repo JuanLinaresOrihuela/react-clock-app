@@ -1,6 +1,7 @@
 import { useState, FormEvent } from "react";
 import { Clock } from "../../interfaces/Clock";
 import moment from "moment-timezone";
+import React from "react";
 
 interface Props {
   clock: Clock;
@@ -20,7 +21,6 @@ function ClockForm({ clock, updateClock, deleteClock }: Props) {
       isDigital,
     };
     updateClock(newClock);
-    // Reset form after submission
     setTimeZone("");
     setIsDigital(true);
   };
@@ -35,15 +35,14 @@ function ClockForm({ clock, updateClock, deleteClock }: Props) {
 
   const getCurrentTime = (): string => {
     if (!timeZone) return "";
-    return moment().tz(timeZone).format("YYYY-MM-DD HH:mm:ss");
+    return moment().tz(timeZone).format('HH:mm:ss');
   };
 
   return (
     <div className="clock-form">
-      <div>
-        <form onSubmit={submitHandler}>
-          <label htmlFor="selectedTimeZoneId">Select Time Zone: </label>
-          <br />
+      <div className="just-form-container">
+        <form className="clock-form" onSubmit={submitHandler}>
+          <label htmlFor="selectedTimeZoneId">Select Time Zone: </label><br/>
           <select
             name="selectedTZ"
             onChange={handleTimeZoneChange}
@@ -56,21 +55,16 @@ function ClockForm({ clock, updateClock, deleteClock }: Props) {
             <option value="America/Denver">Mountain Standard Time</option>
             <option value="America/Chicago">Central Standard Time</option>
             <option value="America/New_York">Eastern Standard Time</option>
-          </select>
-          <br />
+          </select> <br />
           <label htmlFor="selectIsDigitalId">
             <input
               type="checkbox"
               name="isDigital"
               checked={isDigital}
               onChange={handleIsDigitalChange}
-            />
-            Is Digital?
-          </label>
-          <br />
-          <button onClick={() => deleteClock(clock)}>
-            Delete
-          </button>
+            /> Is Digital?
+          </label><br/>
+          <button onClick={() => deleteClock(clock)}>Delete</button>
         </form>
       </div>
     </div>

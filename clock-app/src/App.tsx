@@ -50,6 +50,7 @@ const App: React.FC = () => {
 
   return (
     <div className="app">
+      <h1 className="app-title">My Clock App</h1>
       <button onClick={handleAddClock}>Add Clock</button>
       <Clocks clocks={clocks} setClocks={setClocks} />
     </div>

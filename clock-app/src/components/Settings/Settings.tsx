@@ -9,7 +9,9 @@ interface SettingProps {
 
 function Setting({ clock, updateClock, deleteClock }: SettingProps) {
   return (
-    <ClockForm clock={clock} updateClock={updateClock} deleteClock={deleteClock} />
+    <div>
+          <ClockForm clock={clock} updateClock={updateClock} deleteClock={deleteClock} />
+    </div>
   );
 }
 

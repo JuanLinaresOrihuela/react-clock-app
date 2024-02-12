@@ -21,21 +21,12 @@ const AnalogClock = () => {
   const secondDeg = seconds * 6;
 
   return (
-    <div className="analog-clock">
-      <div
-        className="hand hour-hand"
-        style={{ transform: `rotate(${hourDeg}deg)` }}
-      ></div>
-      <div
-        className="hand minute-hand"
-        style={{ transform: `rotate(${minuteDeg}deg)` }}
-      ></div>
-      <div
-        className="hand second-hand"
-        style={{ transform: `rotate(${secondDeg}deg)` }}
-      ></div>
-      <div className="center-circle"></div>
-    </div>
+      <div className="analog-clock">
+          <div className="hand hour-hand" style={{transform: `rotate(${hourDeg}deg)`}}></div>
+          <div className="hand minute-hand" style={{transform: `rotate(${minuteDeg}deg)`}}></div>
+          <div className="hand second-hand" style={{transform: `rotate(${secondDeg}deg)`}}></div>
+          <div className="center-circle"></div>
+      </div>
   );
 };
 

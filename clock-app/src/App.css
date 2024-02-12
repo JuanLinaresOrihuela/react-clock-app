@@ -1,5 +1,76 @@
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  color: #000;
+}
+
+.app-title {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0px;
+}
+
 .app {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
+}
+
+.app {
+  text-align: center;
+  justify-content: center; 
+}
+
+
+.analog-clock {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border: 8px solid #000;
+  border-radius: 30%;
+}
+
+.hand {
+  position: absolute;
+  left: 50%;
+  transform-origin: 50% 100%;
+}
+
+.hour-hand {
+  width: 6px;
+  height: 50px;
+  background-color: #0056b3; 
+  border-radius: 20%;
+  margin-top: 50px;
+}
+
+.minute-hand {
+  width: 4px;
+  height: 75px;
+  background-color: #b22234;
+  border-radius: 20%;
+  margin-top: 28px;
+}
+
+.second-hand {
+  width: 3px;
+  height: 90px;
+  background-color: #000;
+  border-radius: 20%;
+  margin-top: 10px;
+}
+
+.center-circle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 15px;
+  height: 15px;
+  background-color: #000; 
+  border-radius: 40%;
 }
