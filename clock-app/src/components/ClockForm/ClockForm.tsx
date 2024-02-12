@@ -1,7 +1,6 @@
-import { useState, FormEvent } from "react";
+import React, { useState, FormEvent, useEffect } from "react";
 import { Clock } from "../../interfaces/Clock";
 import moment from "moment-timezone";
-import React from "react";
 
 interface Props {
   clock: Clock;
@@ -12,6 +11,20 @@ interface Props {
 function ClockForm({ clock, updateClock, deleteClock }: Props) {
   const [timeZone, setTimeZone] = useState<string>(clock.timeZone);
   const [isDigital, setIsDigital] = useState<boolean>(clock.isDigital);
+  const [currentTime, setCurrentTime] = useState<string>("");
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isDigital && timeZone) {
+        const formattedTime = moment().tz(timeZone).format('HH:mm:ss');
+        setCurrentTime(formattedTime);
+      } else {
+        setCurrentTime("");
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [isDigital, timeZone]);
 
   const submitHandler = (e: FormEvent): void => {
     e.preventDefault();
@@ -31,11 +44,6 @@ function ClockForm({ clock, updateClock, deleteClock }: Props) {
 
   const handleIsDigitalChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsDigital(e.target.checked);
-  };
-
-  const getCurrentTime = (): string => {
-    if (!timeZone) return "";
-    return moment().tz(timeZone).format('HH:mm:ss');
   };
 
   return (
@@ -64,6 +72,7 @@ function ClockForm({ clock, updateClock, deleteClock }: Props) {
               onChange={handleIsDigitalChange}
             /> Is Digital?
           </label><br/>
+          {isDigital && timeZone && <div>Current Time: {currentTime}</div>}
           <button onClick={() => deleteClock(clock)}>Delete</button>
         </form>
       </div>
