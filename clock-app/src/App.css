@@ -7,20 +7,14 @@ body {
 }
 
 .app-title {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 0px;
+  text-align: center;
+  padding: 20px;
 }
 
 .app {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
-}
-
-.app {
   text-align: center;
   justify-content: center; 
 }
@@ -73,4 +67,11 @@ body {
   height: 15px;
   background-color: #000; 
   border-radius: 40%;
+}
+
+.clocks-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
