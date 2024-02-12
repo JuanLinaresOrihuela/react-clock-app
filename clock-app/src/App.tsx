@@ -8,7 +8,7 @@ const App: React.FC = () => {
     {
       id: crypto.randomUUID(),
       timeZone: "Hawaii Standard Time/Honolulu",
-      isDigital: true,
+      isDigital: false,
     },
     {
       id: crypto.randomUUID(),
@@ -18,7 +18,7 @@ const App: React.FC = () => {
     {
       id: crypto.randomUUID(),
       timeZone: "Pacific Standard Time/Los Angeles",
-      isDigital: true,
+      isDigital: false,
     },
     {
       id: crypto.randomUUID(),
@@ -28,7 +28,7 @@ const App: React.FC = () => {
     {
       id: crypto.randomUUID(),
       timeZone: "Central Standard Time/Chicago",
-      isDigital: true,
+      isDigital: false,
     },
     {
       id: crypto.randomUUID(),
@@ -43,7 +43,7 @@ const App: React.FC = () => {
       {
         id: crypto.randomUUID(),
         timeZone: "Eastern Standard Time/New York",
-        isDigital: true,
+        isDigital: false,
       },
     ]);
   };
